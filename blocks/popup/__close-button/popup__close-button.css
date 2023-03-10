@@ -5,7 +5,6 @@
     background: transparent center url(../../../images/close-icon.svg);
     background-size: auto;
     border: none;
-    transition: 0.3s;
     position: absolute;
     top: -40px;
     right: -40px;
