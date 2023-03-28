@@ -23,7 +23,7 @@ const popupTypePhotoPlaceImage = document.querySelector('.popup__photo');
 const popupTypePhotoPlaceCaption = document.querySelector('.popup__photo-caption');
 
 // Универсальное закрытие модального окна по крестику
-const popupCloseButtonElement = document.querySelectorAll('.popup__close-button');
+const popupCloseButtonElements = document.querySelectorAll('.popup__close-button');
 
 // Здесь вставить карточки мест
 const insertNewElement = document.querySelector('.elements__list');
@@ -66,8 +66,8 @@ const closePopup = function(popupElement) {
     popupElement.classList.remove('popup_is-opened');
 };
 
-for (let i = 0; i < popupCloseButtonElement.length; i++) {
-    popupCloseButtonElement[i].addEventListener('click', function (event) {
+for (let i = 0; i < popupCloseButtonElements.length; i++) {
+    popupCloseButtonElements[i].addEventListener('click', function (event) {
         closePopup(event.target.closest('.popup'));
     });
 };
@@ -130,7 +130,7 @@ function formEditSubmitHandler(evt) {
 
     evt.preventDefault();
 
-    closePopup(evt.target.closest('.popup'));
+    closePopup(popupTypeEditProfile);
 };
 
 function formAddSubmitHandler(evt) {
@@ -142,7 +142,9 @@ function formAddSubmitHandler(evt) {
     };
 
     insertNewElement.prepend(createCard(item));
-    closePopup(evt.target.closest('.popup'));
+    closePopup(popupTypeAddPlace);
+
+    evt.target.reset();
 };
 
 // Регистрируем обработчики событий по клику
