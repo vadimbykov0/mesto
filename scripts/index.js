@@ -109,7 +109,7 @@ function createCard(item) {
     return (elementPlace);
 };
 
-initialCards.forEach(function(item) {
+initialCards.forEach((item) => {
     insertNewElement.append(createCard(item));
 });
 
