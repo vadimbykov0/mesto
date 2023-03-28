@@ -28,66 +28,53 @@
         <button class="profile__add-button" type="button" aria-label="Добавить карточку с фотографией"></button>
       </section>
       <section class="elements">
-        <ul class="elements__list">
-          <li class="element">
-            <img class="element__img" src="./images/karachayevsk.jpeg" alt="Заброшенное руинированное здание на фоне леса">
-            <div class="element__info">
-              <h2 class="element__name">Карачаевск</h2>
-              <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/mount-elbrus.jpeg" alt="Гора Эльбрус">
-            <div class="element__info">
-              <h2 class="element__name">Гора Эльбрус</h2>
-              <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/dombay.jpeg" alt="Горный пик Домбая">
-            <div class="element__info">
-              <h2 class="element__name">Домбай</h2>
-              <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/mount-elbrus.jpeg" alt="Гора Эльбрус">
-            <div class="element__info">
-              <h2 class="element__name">Гора Эльбрус</h2>
-              <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/dombay.jpeg" alt="Горный пик Домбая">
-            <div class="element__info">
-              <h2 class="element__name">Домбай</h2>
-              <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img class="element__img" src="./images/karachayevsk.jpeg" alt="Заброшенное руинированное здание на фоне леса">
-            <div class="element__info">
-              <h2 class="element__name">Карачаево-Черкесия</h2>
-              <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <form class="popup__form" name="edit-form" method="get" action="#">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="name" type="text">
-          <input class="popup__input popup__input_type_description" placeholder="Введите описание" name="description" type="text">
+          <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="name" type="text" required>
+          <input class="popup__input popup__input_type_description" placeholder="Введите описание" name="description" type="text" required>
           <button class="popup__save-button" type="submit" aria-label="Сохранить форму">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть модальное окно"></button>
       </div>
     </div>
+    <div class="popup popup_type_add-place">
+      <div class="popup__container">
+        <form class="popup__form" name="add-form" method="get" action="#">
+          <h2 class="popup__title">Новое место</h2>
+          <input class="popup__input popup__input_type_name" placeholder="Название" name="name" type="text" required>
+          <input class="popup__input popup__input_type_description" placeholder="Ссылка на картинку" name="link" type="url" required>
+          <button class="popup__save-button" type="submit" aria-label="Создать новую карточку с местом">Создать</button>
+        </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть модальное окно"></button>
+      </div>
+    </div>
+    <div class="popup popup_type_photo-place">
+      <div class="popup__container popup__container_type_photo-place">
+        <figure class="popup__photo-container">
+          <img class="popup__photo" alt="">
+          <figcaption class="popup__photo-caption"></figcaption>
+        </figure>
+        <button class="popup__close-button" type="button" aria-label="Закрыть просмотр фотографии"></button>
+      </div>
+    </div>
+    <template class="element-template">
+      <li class="element">
+        <img class="element__img" alt="">
+        <div class="element__info">
+          <h2 class="element__name"></h2>
+          <button class="element__like-button" type="button" aria-label="Поставить лайк"></button>
+        </div>
+        <button class="element__remove-button" type="button" aria-label="Удалить место"></button>
+      </li>
+    </template>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
