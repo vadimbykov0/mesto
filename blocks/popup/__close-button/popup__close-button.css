@@ -3,7 +3,6 @@
     width: 32px;
     height: 32px;
     background: transparent center url(../../../images/close-icon.svg);
-    background: no-repeat;
     background-size: auto;
     border: none;
     position: absolute;
