@@ -19,9 +19,9 @@ function setEventListeners(form, formInputs, formButton, inactiveButtonClass, in
 
 function checkInputValidity(form, inputElement, inputErrorClass, errorClass) {
     if (!inputElement.validity.valid) {
-        showInputError(form, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
+        showError(form, inputElement, inputElement.validationMessage, inputErrorClass, errorClass);
     } else {
-        hideInputError(form, inputElement, inputErrorClass, errorClass);
+        hideError(form, inputElement, inputErrorClass, errorClass);
     };
 };
 
@@ -37,14 +37,14 @@ function toggleButton(formInputs, formButton, inactiveButtonClass) {
     };
 };
 
-function showInputError(form, inputElement, errorMessage, inputErrorClass, errorClass) {
+function showError(form, inputElement, errorMessage, inputErrorClass, errorClass) {
     const errorElement = form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(errorClass);
 };
 
-function hideInputError(form, inputElement, inputErrorClass, errorClass) {
+function hideError(form, inputElement, inputErrorClass, errorClass) {
     const errorElement = form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(inputErrorClass);
     errorElement.classList.remove(errorClass);
