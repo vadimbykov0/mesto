@@ -36,10 +36,12 @@
     </footer>
     <div class="popup popup_type_edit-profile">
       <div class="popup__container">
-        <form class="popup__form" name="edit-form" method="get" action="#">
+        <form class="popup__form" name="edit-form" method="get" action="#" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="name" type="text" required>
-          <input class="popup__input popup__input_type_description" placeholder="Введите описание" name="description" type="text" required>
+          <input class="popup__input popup__input_type_name" placeholder="Введите имя" name="name-input" type="text" minlength="2" maxlength="40" required>
+          <span class="popup__input-error name-error"></span>
+          <input class="popup__input popup__input_type_description" placeholder="Введите описание" name="description-input" type="text" minlength="2" maxlength="200" required>
+          <span class="popup__input-error description-error"></span>
           <button class="popup__save-button" type="submit" aria-label="Сохранить форму">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть модальное окно"></button>
@@ -47,10 +49,12 @@
     </div>
     <div class="popup popup_type_add-place">
       <div class="popup__container">
-        <form class="popup__form" name="add-form" method="get" action="#">
+        <form class="popup__form" name="add-form" method="get" action="#" novalidate>
           <h2 class="popup__title">Новое место</h2>
-          <input class="popup__input popup__input_type_name" placeholder="Название" name="name" type="text" required>
-          <input class="popup__input popup__input_type_description" placeholder="Ссылка на картинку" name="link" type="url" required>
+          <input class="popup__input popup__input_type_title" placeholder="Название" name="title-input" type="text" minlength="2" maxlength="30" required>
+          <span class="popup__input-error name-place-error"></span>
+          <input class="popup__input popup__input_type_image-link" placeholder="Ссылка на картинку" name="image-link-input" type="url" required>
+          <span class="popup__input-error link-place-error"></span>
           <button class="popup__save-button" type="submit" aria-label="Создать новую карточку с местом">Создать</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть модальное окно"></button>
@@ -75,6 +79,8 @@
         <button class="element__remove-button" type="button" aria-label="Удалить место"></button>
       </li>
     </template>
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

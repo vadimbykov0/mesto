@@ -6,7 +6,8 @@
     font-style: normal;
     text-align: center;
     background-color: #000;
-    border: none;
+    border: 1px solid;
+    border-color: #000;
     border-radius: 2px;
     outline: none;
     min-width: 358px;

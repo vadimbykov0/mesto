@@ -1,5 +1,3 @@
-const popupElement = document.querySelector('.popup');
-
 // Модальное окно редактирования профиля
 const popupTypeEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupFormEditProfile = popupTypeEditProfile.querySelector('.popup__form');
@@ -23,38 +21,10 @@ const popupTypePhotoPlaceImage = document.querySelector('.popup__photo');
 const popupTypePhotoPlaceCaption = document.querySelector('.popup__photo-caption');
 
 // Универсальное закрытие модального окна по крестику
-const popupCloseButtonElements = document.querySelectorAll('.popup__close-button');
+const popupCloseButtonElements = document.querySelectorAll('.popup__close-button'); 
 
 // Здесь вставить карточки мест
 const insertNewElement = document.querySelector('.elements__list');
-
-// Массив карточек «из коробки»
-const initialCards = [
-    {
-        name: 'Москва',
-        link: 'https://images.unsplash.com/photo-1558509336-44482918b852'
-    },
-    {
-        name: 'Ростов',
-        link: 'https://images.unsplash.com/photo-1568146386128-63e8c3d0eb8b'
-    },
-    {
-        name: 'Зеленоградск',
-        link: 'https://images.unsplash.com/photo-1638517078191-a0e77e95f764'
-    },
-    {
-        name: 'Казань',
-        link: 'https://images.unsplash.com/photo-1628066068625-015ea7bcc21a'
-    },
-    {
-        name: 'Республика Карелия',
-        link: 'https://images.unsplash.com/photo-1603200556030-687898aa68fa'
-    },
-    {
-        name: 'Республика Дагестан',
-        link: 'https://images.unsplash.com/photo-1624719961119-ca670af4a20b'
-    }
-];
 
 // Функция открытия модального окна
 const openPopup = function(popupElement) {
@@ -70,6 +40,27 @@ for (let i = 0; i < popupCloseButtonElements.length; i++) {
     popupCloseButtonElements[i].addEventListener('click', function (event) {
         closePopup(event.target.closest('.popup'));
     });
+};
+
+function closePopupByClickOnOverlay() {
+    const allPopupOverlays = Array.from(document.querySelectorAll('.popup'));
+    allPopupOverlays.forEach(function(element) {
+        element.addEventListener('click', function(event) {
+            if (event.target.classList.contains('popup')) {
+                closePopup(element);
+            };
+        });
+    });
+};
+
+
+function handlePopupCloseEsc(event) {
+    if (event.key === 'Escape') {
+        const popupIsOpened = document.querySelector('.popup_is-opened');
+        if (popupIsOpened) {
+            popupIsOpened.classList.remove('popup_is-opened');
+        };
+    };
 };
 
 function createCard(item) {
@@ -161,3 +152,6 @@ placeAddButton.addEventListener('click', () => {
 
 popupFormEditProfile.addEventListener('submit', formEditSubmitHandler);
 popupFormAddPlace.addEventListener('submit', formAddSubmitHandler);
+document.addEventListener('keydown', handlePopupCloseEsc);
+
+closePopupByClickOnOverlay();
