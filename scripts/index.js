@@ -11,8 +11,8 @@ const editProfileDescription = popupFormEditProfile.querySelector('.popup__input
 const popupTypeAddPlace = document.querySelector('.popup_type_add-place');
 const popupFormAddPlace = popupTypeAddPlace.querySelector('.popup__form');
 const placeAddButton = document.querySelector('.profile__add-button');
-const editPlaceName = popupFormAddPlace.querySelector('.popup__input_type_name');
-const editPlaceImageSrc = popupFormAddPlace.querySelector('.popup__input_type_description');
+const editPlaceName = popupFormAddPlace.querySelector('.popup__input_type_title');
+const editPlaceImageSrc = popupFormAddPlace.querySelector('.popup__input_type_image-link');
 const saveButtonPopupAddPlace = popupFormAddPlace.querySelector('.popup__save-button');
 
 // Модальное окно просмотра фотографии карточки

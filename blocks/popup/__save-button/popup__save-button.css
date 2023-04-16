@@ -6,8 +6,7 @@
     font-style: normal;
     text-align: center;
     background-color: #000;
-    border: 1px solid;
-    border-color: #000;
+    border: 1px solid #000;
     border-radius: 2px;
     outline: none;
     min-width: 358px;
@@ -16,6 +15,7 @@
     margin: 0;
     cursor: pointer;
     transition: opacity .5s ease;
+    display: block;
 }
 .popup__save-button:hover {
     opacity: 0.8;

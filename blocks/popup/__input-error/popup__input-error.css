@@ -5,6 +5,8 @@
     font-style: normal;
     color: #ff0000;
     visibility: hidden;
-    transition: opacity ease-in 0.5s, visibility ease-in-out 0.5s;
     opacity: 0;
+    min-height: 30px;
+    transition: opacity ease-in 0.3s, visibility ease-in-out 0.3s;
+    margin-top: 5px;
 }
