@@ -37,7 +37,7 @@ const openPopup = function(popupElement) {
 // Функция закрытия модального окна
 const closePopup = function(popupElement) {
     popupElement.classList.remove('popup_is-opened');
-    document.addEventListener('keydown', handlePopupCloseEsc);
+    document.removeEventListener('keydown', handlePopupCloseEsc);
 };
 
 for (let i = 0; i < popupCloseButtonElements.length; i++) {
@@ -140,10 +140,13 @@ profileEditButton.addEventListener('click', () => {
     editProfileName.value = profileName.textContent;
     editProfileDescription.value = profileDescription.textContent;
     openPopup(popupTypeEditProfile);
+    resetInput(popupFormEditProfile, validationObject);
 });
 
 placeAddButton.addEventListener('click', function() {
     openPopup(popupTypeAddPlace);
+    popupFormAddPlace.reset();
+    resetInput(popupFormAddPlace, validationObject);
 });
 
 popupFormEditProfile.addEventListener('submit', handleProfileFormSubmit);
