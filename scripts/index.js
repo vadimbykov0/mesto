@@ -20,8 +20,13 @@ const popupTypePhotoPlace = document.querySelector('.popup_type_photo-place');
 const popupTypePhotoPlaceImage = document.querySelector('.popup__photo');
 const popupTypePhotoPlaceCaption = document.querySelector('.popup__photo-caption');
 
+// Универсальное закрытие модального окна по крестику 
+const popupCloseButtonElements = document.querySelectorAll('.popup__close-button'); 
+
 // Здесь вставить карточки мест
 const elementsList = document.querySelector('.elements__list');
+
+const popupOverlays = document.querySelectorAll('.popup');
 
 // Функция открытия модального окна
 const openPopup = function(popupElement) {
@@ -35,17 +40,22 @@ const closePopup = function(popupElement) {
     document.addEventListener('keydown', handlePopupCloseEsc);
 };
 
-const popups = document.querySelectorAll('.popup');
-popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup);
-        }
-        if (evt.target.classList.contains('popup__close')) {
-            closePopup(popup);
-        };
+for (let i = 0; i < popupCloseButtonElements.length; i++) {
+    popupCloseButtonElements[i].addEventListener('click', function (event) {
+        closePopup(event.target.closest('.popup'));
     });
-});
+};
+
+function closePopupByClickOnOverlay() {
+    const allPopupOverlays = Array.from(document.querySelectorAll('.popup'));
+    allPopupOverlays.forEach(function(element) {
+        element.addEventListener('click', function(event) {
+            if (event.target.classList.contains('popup')) {
+                closePopup(element);
+            };
+        });
+    });
+};
 
 // Функция закрытия модального окна при нажатии Esc
 function handlePopupCloseEsc(event) {
@@ -116,12 +126,12 @@ function handleProfileFormSubmit(evt) {
 
 function handleAddFormSubmit(evt) {
     evt.preventDefault();
+    closePopup(popupTypeAddPlace);
     const item = {
         name: editPlaceName.value,
         link: editPlaceImageSrc.value
     };
     elementsList.prepend(createCard(item));
-    closePopup(popupTypeAddPlace);
     evt.target.reset();
 };
 
@@ -132,9 +142,11 @@ profileEditButton.addEventListener('click', () => {
     openPopup(popupTypeEditProfile);
 });
 
-placeAddButton.addEventListener('click', () => {
+placeAddButton.addEventListener('click', function() {
     openPopup(popupTypeAddPlace);
 });
 
 popupFormEditProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormAddPlace.addEventListener('submit', handleAddFormSubmit);
+
+closePopupByClickOnOverlay();
