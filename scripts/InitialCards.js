@@ -1,4 +1,3 @@
-// Массив карточек «из коробки»
 const initialCards = [
     {
         name: 'Москва',
@@ -25,3 +24,5 @@ const initialCards = [
         link: 'https://images.unsplash.com/photo-1624719961119-ca670af4a20b'
     }
 ];
+
+export default initialCards;

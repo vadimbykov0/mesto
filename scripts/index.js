@@ -1,4 +1,9 @@
-// Модальное окно редактирования профиля
+// Импорты
+import initialCards from "./InitialCards.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
+// Константы для модального окна редактирования профиля
 const popupTypeEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupFormEditProfile = document.forms["edit-form"];
 const profileName = document.querySelector('.profile__name');
@@ -7,26 +12,38 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const editProfileName = popupFormEditProfile.querySelector('.popup__input_type_name');
 const editProfileDescription = popupFormEditProfile.querySelector('.popup__input_type_description');
 
-// Модальное окно добавления места
+// Константы для модального окна добавления места
 const popupTypeAddPlace = document.querySelector('.popup_type_add-place');
 const popupFormAddPlace = document.forms["add-form"];
 const placeAddButton = document.querySelector('.profile__add-button');
 const editPlaceName = popupFormAddPlace.querySelector('.popup__input_type_title');
 const editPlaceImageSrc = popupFormAddPlace.querySelector('.popup__input_type_image-link');
-const saveButtonPopupAddPlace = popupFormAddPlace.querySelector('.popup__save-button');
 
-// Модальное окно просмотра фотографии карточки
+// Константы для модального окна просмотра фотографии карточки
 const popupTypePhotoPlace = document.querySelector('.popup_type_photo-place');
 const popupTypePhotoPlaceImage = document.querySelector('.popup__photo');
-const popupTypePhotoPlaceCaption = document.querySelector('.popup__photo-caption');
+const popupTypePhotoPlaceCaption = document.querySelector('.popup__photo-caption'); 
 
-// Универсальное закрытие модального окна по крестику 
-const popupCloseButtonElements = document.querySelectorAll('.popup__close-button'); 
-
-// Здесь вставить карточки мест
+// Вставить карточки
 const elementsList = document.querySelector('.elements__list');
 
-const popupOverlays = document.querySelectorAll('.popup');
+const templateSelector = '#element-template';
+
+// Константы для валидации форм
+const validationObject = {
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__save-button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active',
+};
+
+// Валидация форм
+const validateEditProfile = new FormValidator(validationObject, popupFormEditProfile);
+validateEditProfile.enableValidation();
+
+const validateAddCard = new FormValidator(validationObject, popupFormAddPlace);
+validateAddCard.enableValidation();
 
 // Функция открытия модального окна
 const openPopup = function(popupElement) {
@@ -40,83 +57,51 @@ const closePopup = function(popupElement) {
     document.removeEventListener('keydown', handlePopupCloseEsc);
 };
 
-for (let i = 0; i < popupCloseButtonElements.length; i++) {
-    popupCloseButtonElements[i].addEventListener('click', function (event) {
-        closePopup(event.target.closest('.popup'));
-    });
-};
-
-function closePopupByClickOnOverlay() {
-    const allPopupOverlays = Array.from(document.querySelectorAll('.popup'));
-    allPopupOverlays.forEach(function(element) {
-        element.addEventListener('click', function(event) {
-            if (event.target.classList.contains('popup')) {
-                closePopup(element);
-            };
-        });
-    });
-};
-
 // Функция закрытия модального окна при нажатии Esc
-function handlePopupCloseEsc(event) {
-    if (event.key === 'Escape') {
+function handlePopupCloseEsc(evt) {
+    if (evt.key === 'Escape') {
         const popupCloseEsc = document.querySelector('.popup_is-opened');
         closePopup(popupCloseEsc);
     };
 };
 
-function createCard(item) {
-    const elementTemplate = document.querySelector('.element-template').content;
-    const elementPlace = elementTemplate.querySelector('.element').cloneNode(true);
-    const elementImage = elementPlace.querySelector('.element__img');
-    const elementName = elementPlace.querySelector('.element__name');
+// Универсальное закрытие модального окна по крестику и оверлею
+const popups = document.querySelectorAll('.popup');
 
-    elementImage.alt = item.name;
-    elementImage.src = item.link;
-    elementName.textContent = item.name;
-
-    elementImage.addEventListener('click', () => {
-        openPopup(popupTypePhotoPlace);
-    
-        openPopupTypePhotoPlace();
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_is-opened')) {
+            closePopup(popup);
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+            closePopup(popup);
+        };
     });
-
-    function openPopupTypePhotoPlace() {
-        popupTypePhotoPlaceImage.src = elementImage.src;
-        popupTypePhotoPlaceImage.alt = elementImage.alt;
-        popupTypePhotoPlaceCaption.textContent = elementImage.alt;
-    }
-
-    const elementLikeButton = elementPlace.querySelector('.element__like-button');
-
-    elementLikeButton.addEventListener('click', () => {
-        toggleLike(elementLikeButton);
-    });
-
-    const elementRemoveButton = elementPlace.querySelector('.element__remove-button');
-
-    elementRemoveButton.addEventListener('click', () => {
-        removeElement(elementRemoveButton);
-    });
-
-    return (elementPlace);
-};
-
-initialCards.forEach((item) => {
-    elementsList.append(createCard(item));
 });
 
-// Функция поставить/удалить лайк карточке
-function toggleLike(elementLikeButton) {
-    elementLikeButton.classList.toggle('element__like-button_active');
+// Функция открытия модального окна просмотра увеличенного изображения
+function openPopupTypePhotoPlace(cardElement) {
+    popupTypePhotoPlaceImage.src = cardElement.link;
+    popupTypePhotoPlaceImage.alt = cardElement.name;
+    popupTypePhotoPlaceCaption.textContent = cardElement.name;
+    openPopup(popupTypePhotoPlace);
 };
 
-// Функция удалить карточку через значок мусорки
-function removeElement(elementRemoveButton) {
-    elementRemoveButton.closest('.element').remove();
+// Функция добавления карточки
+function addCard(container, card) {
+    container.prepend(card);
 };
 
-// Обработчик «отправки» формы
+function createNewCard(element) {
+    const card = new Card(element, templateSelector, openPopupTypePhotoPlace);
+    const cardElement = card.createCard();
+    return cardElement;
+};
+
+initialCards.forEach(element => {
+    addCard(elementsList, createNewCard(element));
+});
+
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editProfileName.value;
@@ -126,30 +111,29 @@ function handleProfileFormSubmit(evt) {
 
 function handleAddFormSubmit(evt) {
     evt.preventDefault();
-    closePopup(popupTypeAddPlace);
     const item = {
         name: editPlaceName.value,
-        link: editPlaceImageSrc.value
+        link: editPlaceImageSrc.value,
     };
-    elementsList.prepend(createCard(item));
-    evt.target.reset();
+    addCard(elementsList, createNewCard(item));
+    closePopup(popupTypeAddPlace);
 };
 
-// Регистрируем обработчики событий по клику
-profileEditButton.addEventListener('click', () => {
+function handleEditProfileInfo() {
     editProfileName.value = profileName.textContent;
     editProfileDescription.value = profileDescription.textContent;
     openPopup(popupTypeEditProfile);
-    resetInput(popupFormEditProfile, validationObject);
-});
+    validateEditProfile.resetError();
+};
 
-placeAddButton.addEventListener('click', function() {
-    openPopup(popupTypeAddPlace);
+function handleAddPlace() {
     popupFormAddPlace.reset();
-    resetInput(popupFormAddPlace, validationObject);
-});
+    openPopup(popupTypeAddPlace);
+    validateAddCard.resetError();
+};
 
+// Добавить слушатели событий
+profileEditButton.addEventListener('click', handleEditProfileInfo);
+placeAddButton.addEventListener('click', handleAddPlace);
 popupFormEditProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormAddPlace.addEventListener('submit', handleAddFormSubmit);
-
-closePopupByClickOnOverlay();
