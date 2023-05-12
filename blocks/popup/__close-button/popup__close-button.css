@@ -4,6 +4,7 @@
     height: 32px;
     background: transparent center url(../../../images/close-icon.svg);
     background-size: 32px 32px;
+    background-repeat: no-repeat;
     border: none;
     position: absolute;
     top: -40px;

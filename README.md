@@ -20,6 +20,7 @@
 * [Чеклист 5 спринта курса](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-5.pdf)
 * [Чеклист 6 спринта курса](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-6.pdf)
 * [Чеклист 7 спринта курса](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-7.pdf)
+* [Чеклист 8 спринта курса](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-8.pdf)
 
 ### Figma:
 * [Макет в Figma 4 спринта курса](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1&t=d70q2BwsbswhgSbr-0)
