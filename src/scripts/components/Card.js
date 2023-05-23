@@ -2,7 +2,7 @@ export default class Card {
     constructor(cardElement, selectorTemplate, openPopupTypePhotoPlace) {
         this._cardElement = cardElement;
         this._link = cardElement.link;
-        this._name = cardElement.name;
+        this._name = cardElement.title;
         this._selectorTemplate = selectorTemplate;
         this._openPopupTypePhotoPlace = openPopupTypePhotoPlace;
     };
