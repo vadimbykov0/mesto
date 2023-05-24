@@ -18,7 +18,7 @@ export default class Card {
     };
 
     _removeCard = () => {
-        this._copyElement.closest('.element').remove();
+        this._copyElement.remove();
     };
 
     _openImageInPopupTypePhotoPlace = () => {

@@ -1,11 +1,11 @@
 // Импорты
 import './index.css';
-import Card from "../scripts/components/Card.js";
-import FormValidator from "../scripts/components/FormValidator.js";
-import PopupWithImage from "../scripts/components/PopupWithImage.js";
-import Section from "../scripts/components/Section.js";
-import UserInfo from "../scripts/components/UserInfo.js";
-import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import {
     initialCards,
     placeAddButton,
@@ -19,7 +19,7 @@ import {
     elementsListSelector,
     elementUserInfo,
     validationObject
-} from "../scripts/utils/Constants.js";
+} from "../utils/constants.js";
 
 // Валидация форм
 const validateEditProfile = new FormValidator(validationObject, popupFormEditProfile);
@@ -39,7 +39,7 @@ const section = new Section({
         return cardElement;
     },
 }, elementsListSelector);
-section.addCard();
+section.addCards();
 
 const popupTypeProfile = new PopupWithForm(popupTypeEditProfileSelector, (data) => {
     userInfo.setUserInfo(data);
