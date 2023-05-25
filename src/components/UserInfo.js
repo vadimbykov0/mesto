@@ -4,9 +4,9 @@ export default class UserInfo {
         this._profileDescription = document.querySelector(profileDescriptionSelector);
     };
 
-    setUserInfo(elementUser) {
-        this._profileName.textContent = elementUser.username;
-        this._profileDescription.textContent = elementUser.description;
+    setUserInfo(userData) {
+        this._profileName.textContent = userData.username;
+        this._profileDescription.textContent = userData.description;
     };
 
     getUserInfo() {
