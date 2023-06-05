@@ -95,9 +95,9 @@ const popupTypeProfile = new PopupWithForm(popupTypeEditProfileSelector, (data) 
 });
 
 const popupTypeAddPlace = new PopupWithForm(popupTypeAddPlaceSelector, (data) => {
-    Promise.all([api.getInfo(), api.addNewCard(data)])
-    .then(([dataUser, dataCard]) => {
-        dataCard.myId = dataUser._id;
+    api.addNewCard(data)
+    .then(dataCard => {
+        dataCard.myId = userInfo.getId();
         section.addItem(createNewCard(dataCard));
         popupTypeAddPlace.close();
     })
@@ -147,6 +147,7 @@ Promise.all([api.getInfo(), api.getCards()])
 .then(([dataUser, dataCard]) => {
     dataCard.forEach(element => element.myId = dataUser._id);
     userInfo.setUserInfo({ username: dataUser.name, description: dataUser.about, avatar: dataUser.avatar });
-    section.addCards(dataCard);
+    userInfo.setId(dataUser._id);
+    section.addCards(dataCard.reverse());
 })
 .catch((error) => console.error(`Ошибка в рендере начальных данных ${error}`))

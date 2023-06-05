@@ -5,6 +5,13 @@ export default class Api {
         this._authorization = config.headers.authorization;
     };
 
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+        return res.json();
+    };
+
     // Обновление аватара пользователя
     changeAvatar(data) {
         return fetch(`${this._url}/users/me/avatar`, {
@@ -14,7 +21,7 @@ export default class Api {
                 avatar: data.avatar
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     // Загрузка информации о пользователе с сервера
@@ -24,7 +31,7 @@ export default class Api {
                 authorization: this._authorization,
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     // Загрузка карточек с сервера
@@ -34,7 +41,7 @@ export default class Api {
                 authorization: this._authorization,
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     // Редактирование профиля
@@ -47,7 +54,7 @@ export default class Api {
                 about: data.description
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     // Добавление новой карточки
@@ -60,7 +67,7 @@ export default class Api {
                 link: data.link
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     // Удаление карточки
@@ -71,7 +78,7 @@ export default class Api {
                 authorization: this._authorization
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     // Постановка и снятие лайка
@@ -82,7 +89,7 @@ export default class Api {
                 authorization: this._authorization
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 
     removeLike(cardId) {
@@ -92,6 +99,6 @@ export default class Api {
                 authorization: this._authorization
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject)
+        .then(this._getResponseData)
     };
 };
