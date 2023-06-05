@@ -1,51 +1,28 @@
-// Константы начальных карточек
-const initialCards = [
-    {
-        title: 'Москва',
-        link: 'https://images.unsplash.com/photo-1558509336-44482918b852',
-    },
-    {
-        title: 'Ростов',
-        link: 'https://images.unsplash.com/photo-1568146386128-63e8c3d0eb8b',
-    },
-    {
-        title: 'Зеленоградск',
-        link: 'https://images.unsplash.com/photo-1638517078191-a0e77e95f764',
-    },
-    {
-        title: 'Казань',
-        link: 'https://images.unsplash.com/photo-1628066068625-015ea7bcc21a',
-    },
-    {
-        title: 'Республика Карелия',
-        link: 'https://images.unsplash.com/photo-1603200556030-687898aa68fa',
-    },
-    {
-        title: 'Республика Дагестан',
-        link: 'https://images.unsplash.com/photo-1624719961119-ca670af4a20b',
-    }
-];
-
 const templateSelector = '#element-template';
 const elementsListSelector = '.elements__list';
 
 const elementUserInfo = {
     profileNameSelector: '.profile__name',
-    profileDescriptionSelector: '.profile__description'
+    profileDescriptionSelector: '.profile__description',
+    profileAvatarSelector: '.profile__avatar'
 };
 
 // Константы нахождения форм на странице
 const popupFormAddPlace = document.forms["add-form"];
 const popupFormEditProfile = document.forms["edit-form"];
+const popupFormChangeAvatar = document.forms["change-form"];
 
-// Кнопки редактирования профиля и добавления места
+// Кнопки
 const placeAddButton = document.querySelector('.profile__add-button');
 const profileEditButton = document.querySelector('.profile__edit-button');
+const profileChangeButton = document.querySelector('.profile__avatar-change');
 
 // Константы нахождения попапов на странице
 const popupTypeEditProfileSelector = '.popup_type_edit-profile';
 const popupTypeAddPlaceSelector = '.popup_type_add-place';
 const popupTypePhotoPlaceSelector = '.popup_type_photo-place';
+const popupTypeChangeAvatarSelector = '.popup_type_change-avatar';
+const popupTypeDeleteCard = '.popup_type_delete-card';
 
 // Константы для валидации форм
 const validationObject = {
@@ -58,16 +35,19 @@ const validationObject = {
 
 // Экспорты
 export {
-    initialCards,
-    popupFormAddPlace,
-    popupFormEditProfile,
-    placeAddButton,
-    profileEditButton,
     templateSelector,
     elementsListSelector,
+    elementUserInfo,
+    popupFormAddPlace,
+    popupFormEditProfile,
+    popupFormChangeAvatar,
+    placeAddButton,
+    profileEditButton,
+    profileChangeButton,
     popupTypeEditProfileSelector,
     popupTypeAddPlaceSelector,
     popupTypePhotoPlaceSelector,
-    elementUserInfo,
+    popupTypeChangeAvatarSelector,
+    popupTypeDeleteCard,
     validationObject
 };

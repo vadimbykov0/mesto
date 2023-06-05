@@ -10,7 +10,7 @@
     border: none;
     outline: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 3px 0;
     cursor: pointer;
     transition: opacity .5s ease;
 }
