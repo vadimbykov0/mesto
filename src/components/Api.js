@@ -5,6 +5,18 @@ export default class Api {
         this._authorization = config.headers.authorization;
     };
 
+    // Обновление аватара пользователя
+    changeAvatar(data) {
+        return fetch(`${this._url}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar: data.avatar
+            })
+        })
+        .then(res => res.ok ? res.json() : Promise.reject)
+    };
+
     // Загрузка информации о пользователе с сервера
     getInfo() {
         return fetch(`${this._url}/users/me`, {
@@ -79,18 +91,6 @@ export default class Api {
             headers: {
                 authorization: this._authorization
             }
-        })
-        .then(res => res.ok ? res.json() : Promise.reject)
-    };
-
-    // Обновление аватара пользователя
-    changeAvatar(data) {
-        return fetch(`${this._url}/users/me/avatar`, {
-            method: 'PATCH',
-            headers: this._headers,
-            body: JSON.stringify({
-                avatar: data.avatar
-            })
         })
         .then(res => res.ok ? res.json() : Promise.reject)
     };

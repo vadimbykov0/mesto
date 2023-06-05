@@ -87,7 +87,7 @@ const section = new Section((element) => {
 const popupTypeProfile = new PopupWithForm(popupTypeEditProfileSelector, (data) => {
     api.setUserInfo(data)
     .then(res => {
-        userInfo.setUserInfo({ username: res.name, description: res.about, avatar: avatar });
+        userInfo.setUserInfo({ username: res.name, description: res.about, avatar: res.avatar });
         popupTypeProfile.close();
     })
     .catch((error) => console.error(`Ошибка при редактировании профиля ${error}`))
@@ -108,7 +108,7 @@ const popupTypeAddPlace = new PopupWithForm(popupTypeAddPlaceSelector, (data) =>
 const popupChangeAvatar = new PopupWithForm(popupTypeChangeAvatarSelector, (data) => {
     api.changeAvatar(data)
     .then(res => {
-        userInfo.setUserInfo({ username: res.name, description: res.about, avatar: avatar });
+        userInfo.setUserInfo({ username: res.name, description: res.about, avatar: res.avatar });
         popupChangeAvatar.close();
     })
     .catch((error) => console.error(`Ошибка при изменении аватара профиля ${error}`))

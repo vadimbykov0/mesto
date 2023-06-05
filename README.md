@@ -13,6 +13,7 @@
 * Файловая структура по правилам Nested БЭМ
 * JavaScript (ООП, разбиение на модули)
 * Сборка вебпаком
+* Подключение сайта к серверу
 
 ### Чеклист:
 * [Чеклист 4 спринта курса](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-4.pdf)
